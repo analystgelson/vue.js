@@ -1,4 +1,4 @@
-window.billCreateComponent = Vue.extend({
+window.billPayCreateComponent = Vue.extend({
     template: `
 	<form name="form" @submit.prevent="submit">
 		<label>Vencimneto</label>
@@ -37,10 +37,17 @@ window.billCreateComponent = Vue.extend({
             }
         };
     },
+    created: function () {
+        if (this.$route.name == 'bill.update') {
+            this.formType = 'update';
+            this.getBill(this.$route.params.index);
+            return;
+        }
+    },
     methods: {
         submit: function(){
             if (this.formType == 'insert') {
-                this.$dispatch('new-bill', this.bill);
+                this.$root.$children[0].billsPay.push(this.bill);
             }
             this.bill = {
                 date_due: '',
@@ -48,16 +55,11 @@ window.billCreateComponent = Vue.extend({
                 value: 0,
                 done: false
             };
-
-            this.$dispatch('change-activedview', 0);
-        }
-    },
-    events: {
-        'change-formtype': function( formType ) {
-            this.formType = formType;
+            this.$router.go({name: 'bill.list'});
         },
-        'change-bill': function( bill ) {
-            this.bill = bill;
+        getBill: function (index) {
+            var bills = this.$root.$children[0].billsPay;
+            this.bill = bills[index];
         }
     }
 });
