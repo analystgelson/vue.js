@@ -1,3 +1,16 @@
+const names = [
+    'Conta de luz',
+    'Conta de água',
+    'Conta de telefone',
+    'Supermercado',
+    'Empréstimo',
+    'Gasolina'
+];
+
+//let -> escopo e contexto local - variavel com ciclo de vida menor - pode em estrutura de repetição e etc
+//const -> agente quer declarar um valor que vai ser apenas para leitura
+//var -> escopo e contexto global
+
 window.billPayCreateComponent = Vue.extend({
     template: `
 	<form name="form" @submit.prevent="submit">
@@ -21,14 +34,7 @@ window.billPayCreateComponent = Vue.extend({
     data: function(){
         return {
             formType: 'insert',
-            names: [
-                'Conta de luz',
-                'Conta de água',
-                'Conta de telefone',
-                'Supermercado',
-                'Empréstimo',
-                'Gasolina'
-            ],
+            names: names,
             bill: {
                 date_due: '',
                 name: '',
@@ -45,7 +51,7 @@ window.billPayCreateComponent = Vue.extend({
     },
     methods: {
         submit: function(){
-            var self = this;
+            let self = this;
             if (this.formType == 'insert') {
                 Bill.save({}, this.bill).then(function(response) {
                     self.$dispatch('change-info');
@@ -67,7 +73,7 @@ window.billPayCreateComponent = Vue.extend({
             this.$router.go({name: 'bill.list'});
         },
         getBill: function(id) {
-            var self = this;
+            let self = this;
             Bill.get({id : id}).then(function(response){
                 self.bill = response.data;
             });
