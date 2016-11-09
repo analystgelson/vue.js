@@ -31,7 +31,7 @@ window.billPayCreateComponent = Vue.extend({
 		<input type="submit" value="Enviar">
 	</form>
 	`,
-    data: function(){
+    data(){
         return {
             formType: 'insert',
             names: names,
@@ -43,14 +43,14 @@ window.billPayCreateComponent = Vue.extend({
             }
         };
     },
-    created: function () {
+    created() {
         if (this.$route.name == 'bill-pay.update') {
             this.formType = 'update';
             this.getBill(this.$route.params.id);
         }
     },
     methods: {
-        submit: function(){
+        submit(){
             let self = this;
             if (this.formType == 'insert') {
                 Bill.save({}, this.bill).then(function(response) {
@@ -72,7 +72,7 @@ window.billPayCreateComponent = Vue.extend({
             };
             this.$router.go({name: 'bill.list'});
         },
-        getBill: function(id) {
+        getBill(id) {
             let self = this;
             Bill.get({id : id}).then(function(response){
                 self.bill = response.data;

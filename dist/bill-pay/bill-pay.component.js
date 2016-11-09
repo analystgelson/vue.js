@@ -16,6 +16,7 @@ window.billPayComponent = Vue.extend({
         this.updateStatus();
         this.updateTotal();
     },
+
     methods: {
         calculateStatus: function calculateStatus(bills) {
             if (!bills.length) {

@@ -24,7 +24,7 @@ window.billReceiveComponent = Vue.extend({
 	<!--<menu-component></menu-component>-->
 	<!--<router-view></router-view>-->
 	`,
-    data: function(){
+    data(){
         return {
             title: "Conta a receber"
         };

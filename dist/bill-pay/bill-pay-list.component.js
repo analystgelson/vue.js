@@ -13,6 +13,7 @@ window.billPayListComponent = Vue.extend({
 			self.bills = response.data;
 		});
 	},
+
 	methods: {
 		deleteBill: function deleteBill(bill) {
 			var _this = this;

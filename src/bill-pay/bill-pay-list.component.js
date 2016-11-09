@@ -34,19 +34,19 @@ window.billPayListComponent = Vue.extend({
 		</tbody>
 	</table>
 	`,
-    data: function(){
+    data(){
         return {
             bills: []
         };
     },
-    created: function(){
+    created(){
         let self = this;
         Bill.query().then(function(response){
             self.bills = response.data;
         })
     },
     methods: {
-        deleteBill: function(bill){
+        deleteBill(bill){
             if (confirm('Deseja excluir essa conta?')) {
                 let self = this;
                 Bill.delete({id : bill.id}).then(function(response) {

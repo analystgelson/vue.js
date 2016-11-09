@@ -26,6 +26,7 @@ window.billPayCreateComponent = Vue.extend({
             this.getBill(this.$route.params.id);
         }
     },
+
     methods: {
         submit: function submit() {
             var self = this;
